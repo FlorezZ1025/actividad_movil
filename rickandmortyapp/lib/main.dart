@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Rick and Morty App',
+      title: 'Rick and Morty App', // Establece el título de la app
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

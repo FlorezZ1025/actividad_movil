@@ -13,6 +13,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final ApiService _apiService = ApiService();
   List<Character> _characters = [];
   bool _isLoading = false;
+  bool _hasError = false;
 
   @override
   void initState() {
@@ -28,14 +29,19 @@ class _SearchScreenState extends State<SearchScreen> {
       final characters = await _apiService.fetchCharacters(query: query);
       setState(() {
         _characters = characters;
+        _hasError = false; 
       });
     } catch (e) {
-      // Maneja el error aquí si es necesario
-      print(e);
+      
+      setState(() {
+        _characters = [];
+        _hasError = true;
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
-    setState(() {
-      _isLoading = false;
-    });
   }
 
   @override
@@ -60,13 +66,19 @@ class _SearchScreenState extends State<SearchScreen> {
                   },
                 ),
               ),
-              onSubmitted: (query) {
+              onChanged: (query) {
                 _fetchCharacters(query);
               },
             ),
           ),
-          _isLoading
-              ? const Center(child: CircularProgressIndicator())
+          _hasError
+          ? const Expanded(child: Center(child: Text('Error al cargar los personajes!',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 188, 17, 5),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24 ),)))
+          : _isLoading
+              ? const Expanded(child: Center(child: CircularProgressIndicator()))
               : Expanded(
                   child: ListView.builder(
                     itemCount: _characters.length,
@@ -74,16 +86,18 @@ class _SearchScreenState extends State<SearchScreen> {
                       final character = _characters[index];
                       return ListTile(
                         leading: Image.network(
-                            character.image,
-                            width: 50,
-                            height: 50,
-                            fit: BoxFit.cover,),
+                          character.image,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        ),
                         title: Text(character.name),
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CharacterDetailScreen(character: character),
+                              builder: (context) =>
+                                  CharacterDetailScreen(character: character),
                             ),
                           );
                         },
