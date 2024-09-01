@@ -73,6 +73,11 @@ class _SearchScreenState extends State<SearchScreen> {
                     itemBuilder: (context, index) {
                       final character = _characters[index];
                       return ListTile(
+                        leading: Image.network(
+                            character.image,
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.cover,),
                         title: Text(character.name),
                         onTap: () {
                           Navigator.push(
