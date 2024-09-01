@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../services/api_service.dart'; // Importa el servicio de API
-import '../models/character.dart'; // Importa el modelo de Character
+import '../services/api_service.dart'; 
+import '../models/character.dart'; 
 import 'character_detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _SearchScreenState extends State<SearchScreen> {
         _hasError = false; 
       });
     } catch (e) {
-      
+
       setState(() {
         _characters = [];
         _hasError = true;
@@ -91,7 +91,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           height: 50,
                           fit: BoxFit.cover,
                         ),
-                        title: Text(character.name),
+                        title: Text(character.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        subtitle: Text(character.species),
                         onTap: () {
                           Navigator.push(
                             context,
