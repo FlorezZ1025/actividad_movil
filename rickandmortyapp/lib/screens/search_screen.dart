@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import '../services/api_service.dart'; // Asegúrate de que el nombre del paquete sea correcto
+import '../services/api_service.dart'; // Importa el servicio de API
+import '../models/character.dart'; // Importa el modelo de Character
 import 'character_detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
-  // ignore: library_private_types_in_public_api
   _SearchScreenState createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   final ApiService _apiService = ApiService();
-  List<dynamic> _characters = [];
+  List<Character> _characters = [];
   bool _isLoading = false;
 
   @override
@@ -30,9 +30,8 @@ class _SearchScreenState extends State<SearchScreen> {
         _characters = characters;
       });
     } catch (e) {
-      // ignore: avoid_print
-      print(e);
       // Maneja el error aquí si es necesario
+      print(e);
     }
     setState(() {
       _isLoading = false;
@@ -74,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     itemBuilder: (context, index) {
                       final character = _characters[index];
                       return ListTile(
-                        title: Text(character['name']),
+                        title: Text(character.name),
                         onTap: () {
                           Navigator.push(
                             context,
