@@ -4,6 +4,8 @@ import '../models/character.dart';
 import 'character_detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
+  const SearchScreen({super.key});
+
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
@@ -18,7 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    _fetchCharacters(); // Cargar los primeros personajes al iniciar
+    _fetchCharacters(); 
   }
 
   Future<void> _fetchCharacters([String query = '']) async {
@@ -31,8 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
         _characters = characters;
         _hasError = false; 
       });
-    } catch (e) {
-
+    } catch (e) { 
       setState(() {
         _characters = [];
         _hasError = true;

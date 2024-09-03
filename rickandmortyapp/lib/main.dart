@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/welcome_screen.dart'; // Importa la pantalla de bienvenida
+import 'screens/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Rick and Morty App', // Establece el título de la app
+      title: 'Rick and Morty App',
+      debugShowCheckedModeBanner: false,  
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WelcomeScreen(), // Establece la pantalla inicial
+      home: const WelcomeScreen(),
     );
   }
 }
