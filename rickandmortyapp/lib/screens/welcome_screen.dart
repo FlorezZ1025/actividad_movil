@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rickandmortyapp/screens/episodes_screen.dart';
 import 'search_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -29,8 +30,8 @@ class WelcomeScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: const Text(
-                'Descubre los personajes de Rick y Morty',
-                style: TextStyle(
+                'Que quieres ver?',
+                style:TextStyle(
                   fontSize: 18,
                   color: Color.fromARGB(255, 14, 14, 14),
                   shadows:[ 
@@ -41,25 +42,51 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-      ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SearchScreen()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  backgroundColor: Colors.deepPurple,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+     SizedBox(
+      width: 200,
+       child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SearchScreen()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    backgroundColor: Colors.deepPurple,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: const Text(
+                    'Personajes',
+                    style: TextStyle(fontSize: 20.0, color: Colors.white),
                   ),
                 ),
-                child: const Text(
-                  'Empieza',
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+     ),
+            const SizedBox(height:15),
+     SizedBox(
+      width: 200,
+       child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EpisodeScreen()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    backgroundColor: Colors.deepPurple,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: const Text(
+                    'Episodios',
+                    style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  ),
                 ),
-              )
+     ),
           ],
         ),
       ),

@@ -83,7 +83,8 @@ class _SearchScreenState extends State<SearchScreen> {
               : Expanded(
                   child: ListView.builder(
                     itemCount: _characters.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (context, index) { 
+                      
                       final character = _characters[index];
                       return ListTile(
                         leading: Image.network(
