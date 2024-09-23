@@ -6,13 +6,11 @@ class Episode {
   final String airDate;
   final String episode;
 
-
   Episode({
     required this.id,
     required this.name,
     required this.airDate,
     required this.episode,
-
   });
 
   factory Episode.fromJson(Map<String, dynamic> json) {
@@ -21,7 +19,6 @@ class Episode {
       name: json['name'],
       airDate: json['air_date'],
       episode: json['episode'],
-    
     );
   }
 }

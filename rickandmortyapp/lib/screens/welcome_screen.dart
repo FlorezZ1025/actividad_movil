@@ -11,7 +11,7 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/welcome_background.jpg'),
+          image: AssetImage('assets/images/rickWallpaper.jpg'),
           fit: BoxFit.cover,
           )
         ),
@@ -45,6 +45,7 @@ class WelcomeScreen extends StatelessWidget {
      SizedBox(
       width: 200,
        child: ElevatedButton(
+                  
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -53,6 +54,8 @@ class WelcomeScreen extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    shadowColor: Colors.black,
+                    elevation: 10,
                     backgroundColor: Colors.deepPurple,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),

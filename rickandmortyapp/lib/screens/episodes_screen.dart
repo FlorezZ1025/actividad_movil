@@ -21,9 +21,7 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
 
   Future<void> _fetchEpisodes() async {
     try {
-      print("Fetch a punto de realizarse");
       final episodes = await _apiService.fetchEpisodes();
-      print("Fetch realizado");
       setState(() {
         _episodes = episodes;
         _hasError = false;
@@ -53,7 +51,12 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
             ),
             _hasError
                 ? const Expanded(
-                    child: Center(child: Text('Error al cargar los episodios')))
+                    child: Center(
+                        child: Text('Error al cargar los episodios',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 188, 17, 5),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24))))
                 : _isLoading
                     ? const Expanded(
                         child: Center(child: CircularProgressIndicator()))
@@ -62,10 +65,30 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                           itemCount: _episodes.length,
                           itemBuilder: (context, index) {
                             final episode = _episodes[index];
-                            return ListTile(
-                              title: Text(episode.name),
-                              subtitle: Text(episode.episode),
-                            );
+                            return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 16.0),
+                                child: Card(
+                                  color:const Color.fromARGB(255, 142, 235, 145),
+                                  elevation: 10,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: ListTile(
+                                    contentPadding: const EdgeInsets.all(16.0),
+                                    title: Text(episode.name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18)),
+                                    subtitle: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text('Fecha de emisión: ${episode.airDate}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                                        Text('Episodio: ${episode.episode}', style: const TextStyle(fontWeight: FontWeight.bold))
+                                      ],
+                                    ),
+                                  ),
+                                ));
                           },
                         ),
                       )
